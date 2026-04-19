@@ -1,7 +1,11 @@
 # Build stage
 FROM maven:3.8.6-eclipse-temurin-17 AS build
 WORKDIR /app
-COPY . .
+
+# Copy the project subdirectory (where pom.xml is) into the container
+COPY EMS-Backend/ .
+
+# Build the project
 RUN mvn clean package -DskipTests
 
 # Run stage
